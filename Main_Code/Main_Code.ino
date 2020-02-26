@@ -3,12 +3,12 @@
 #include "Printer.h"
 
 
-/Hello Ben
-
 void setup() {
   // put your setup code here, to run once:
   char pot = A1;
   int baud = 9600;
+  int pwm = 6;
+  int dir = 7;
   
   Printer.Printer_Setup(baud);
   Pot.Pot_Setup(pot);
@@ -20,4 +20,5 @@ void loop() {
 //  delay(10);        // delay in between reads for stability
 
   Printer.Printer_Run(Pot.Pot_Run());
+  
 }
