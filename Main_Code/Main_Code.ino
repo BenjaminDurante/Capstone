@@ -6,18 +6,20 @@
 void setup() {
   // put your setup code here, to run once:
   char pot = A1;
-  int baud = 9600;
   char pressure = A0;
+  int baud = 9600;
+
 
   Pressure.Pressure_Setup(pressure);
-  Printer.Printer_Setup(baud);
   Pot.Pot_Setup(pot);
+
+  Serial.begin(baud);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-//  Serial.println(Pot.Pot_Run());
-//  delay(10);        // delay in between reads for stability
 
-  Printer.Printer_Run(Pot.Pot_Run());
+  Serial.print(Pot.Pot_Run()); Serial.print(" , "); Serial.print(Pressure.Pressure_Run()); Serial.println("PSI");
+  delay(100);        // delay in between reads for stability
+
 }
