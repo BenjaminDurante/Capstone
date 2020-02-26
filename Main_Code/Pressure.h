@@ -3,7 +3,7 @@ class Pressure {
 
   //Class Variables
   char _trigPin;
-  int _Product;
+  float _Product;
 
   public:
 
@@ -13,7 +13,7 @@ class Pressure {
   }
 
 //Reads the Pressure Transducer value and outputs the pressure 
-  int Pressure_Run() {
+  float Pressure_Run() {
     _Product = analogRead(_trigPin);
     /*
      * 

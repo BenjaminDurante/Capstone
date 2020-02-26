@@ -3,13 +3,13 @@
 #include "Printer.h"
 #include "Pressure.h"
 
-//Hello Ben
-
 void setup() {
   // put your setup code here, to run once:
   char pot = A1;
   int baud = 9600;
-  
+  char pressure = A0;
+
+  Pressure.Pressure_Setup(pressure);
   Printer.Printer_Setup(baud);
   Pot.Pot_Setup(pot);
 }
