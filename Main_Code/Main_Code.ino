@@ -1,6 +1,7 @@
 #include "Pot.h"
 #include "Printer.h"
 #include "Pressure.h"
+#include "SDCard.h"
 
 char pot = A1;
 char pressure1 = A0;
@@ -12,7 +13,7 @@ void setup() {
 
 
   Pot.Pot_Setup(pot);
-
+  SDCard.SDCard_Setup();
   Serial.begin(baud);
 }
 
