@@ -13,7 +13,7 @@ void setup() {
 
 
   Pot.Pot_Setup(pot);
-  SDCard.SDCard_Setup();
+  SDCard.SDCard_Setup(); //Comment this out if there is no SD Card otherwise the program will get stuck here
   Serial.begin(baud);
 }
 

@@ -4,18 +4,17 @@
 class SDCard {
   private:
 
-    const int chipSelect = 4;
-
   public:
 
-    //Defines which port the Potentiometer is connected to
+    //Connects to the SD Card
     void SDCard_Setup() {
-      if (!SD.begin(chipSelect)) {
+      if (!SD.begin(4)) {
         // don't do anything more:
         while (1);
       }
     }
 
+//Writes data to the SD Card
     void SDCard_Write(String dataString) {
 
       // make a string for assembling the data to log:
