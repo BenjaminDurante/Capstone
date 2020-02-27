@@ -20,7 +20,10 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
-  Serial.print(Pot.Pot_Run()); Serial.print(" , P1:"); Serial.print(Pressure.Pressure_Run(pressure1)); Serial.print("PSI, P2:"); Serial.print(Pressure.Pressure_Run(pressure2)); Serial.println("PSI");
+  String dataString = "";
+  dataString = String(Pot.Pot_Run()) + " , P1:" + String(Pressure.Pressure_Run(pressure1)) + "PSI, P2:" + String(Pressure.Pressure_Run(pressure2)) + "PSI";
+  Serial.println(dataString);
+  SDCard.SDCard_Write(dataString);
   delay(100);        // delay in between reads for stability
 
 }
