@@ -1,7 +1,11 @@
 #include "Pot.h"
 #include "Printer.h"
 #include "Pressure.h"
+
+#include "SDCard.h"
+
 #include "LoadCell.h"
+
 
 char pot1 = A1;
 char pot2;
@@ -21,7 +25,12 @@ void setup() {
 
 
 
+  SDCard.SDCard_Setup(); //Comment this out if there is no SD Card otherwise the program will get stuck here
+
+
+
 LoadCell.LoadCell_Setup(LOADCELL_DOUT_PIN,LOADCELL_SCK_PIN);
+
 
   Serial.begin(baud);
 
@@ -31,7 +40,12 @@ void loop() {
   // put your main code here, to run repeatedly:
 
 
-  Serial.print(Pot.Pot_Run(pot1)); Serial.print(" , P1:"); Serial.print(Pressure.Pressure_Run(pressure1)); Serial.print("PSI, P2:"); Serial.print(Pressure.Pressure_Run(pressure2)); Serial.println("PSI");
+  String dataString = "";
+  dataString = String(String(millis()) + "ms, " + Pot.Pot_Run()) + " , P1:" + String(Pressure.Pressure_Run(pressure1)) + "PSI, P2:" + String(Pressure.Pressure_Run(pressure2)) + "PSI";
+  Serial.println(dataString);
+  SDCard.SDCard_Write(dataString);
+
+
 
   delay(100);        // delay in between reads for stability
 
