@@ -4,7 +4,7 @@
 #include "SDCard.h"
 #include "LoadCell.h"
 #include "MotorControl.h"
-
+#include "can.h"
 
 char pot1 = A1;
 char pot2;
