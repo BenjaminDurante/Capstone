@@ -7,7 +7,7 @@
 
 
 char pot1 = A1;
-char pot2;
+char pot2 = A3;
 char pressure1 = A0;
 char pressure2 = A2;
 int motordir1 = 6;
@@ -29,9 +29,10 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
   String dataString = "";
-  dataString = String(String(millis()) + "ms, " + Pot.Pot_Run(pot1)) + " , P1:" + String(Pressure.Pressure_Run(pressure1)) + "PSI, P2:" + String(Pressure.Pressure_Run(pressure2)) + "PSI";
+  double expectedForce = -Pressure.Pressure_Run(pressure2)*0.785+Pressure.Pressure_Run(pressure1)*0.6628;
+  dataString = String(Pot.Pot_Run(pot1)) + " , P1:" + String(Pressure.Pressure_Run(pressure1)) + "PSI   " + String(Pot.Pot_Run(pot2)) + " P2:" + String(Pressure.Pressure_Run(pressure2)) + "PSI  " + String(LoadCell.LoadCell_Run()) + " lbs  Expected Force: " + String(expectedForce);
   Serial.println(dataString);
-  MotorControl.MotorMove(Pot.Pot_Distance(pot1, 87, 18, 50), 25, motordir1, motorpwm1); //87 is the high value of the pot, 18 is the low value, 50 is the stroke length in mm, the final number (25) is the target point. Motor1 is the accumulator actuator
+  //MotorControl.MotorMove(Pot.Pot_Distance(pot1, 87, 18, 50), , motordir1, motorpwm1); //87 is the high value of the pot, 18 is the low value, 50 is the stroke length in mm, the final number (25) is the target point. Motor1 is the accumulator actuator
   //SDCard.SDCard_Write(dataString);
   delay(100);        // delay in between reads for stability
 }
