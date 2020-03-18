@@ -93,8 +93,8 @@ class PIDControl {
       }
 
       //Scope for testing, comment out once validated
-      Scope = String(error) + " " + String(myOutput);
-      Serial.println(Scope);
+//      Scope = String(error) + " " + String(myOutput);
+//      Serial.println(Scope);
       
       return myOutput;
     }

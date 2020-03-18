@@ -10,8 +10,8 @@ char pot1 = A1;
 char pot2 = A3;
 char pressure1 = A0;
 char pressure2 = A2;
-int motordir1 = 6;
-int motorpwm1 = 7;
+int motordir1 = 7;
+int motorpwm1 = 6;
 int motordir2 = 4;
 int motorpwm2 = 5;
 int baud = 9600;
@@ -21,9 +21,9 @@ String Scope = "";
 
 //Values for PID Testing below here
 int Setpoint = 40;
-double kp = 5;
-double ki = 1;
-double kd = 0.5;
+double kp = 20;
+double ki = 0.1;
+double kd = 50;
 int pwm1;
 boolean dir1;
 //Values added for PID testing above here
@@ -51,7 +51,8 @@ void loop() {
   MotorControl.MotorMoveSmart(motordir1, motorpwm1, pwm1, dir1); //Moves motor based on PID
 
   //Scope to see current position vs setpoint to validate code. Comment out if using scope within PIDControl.Run_PWM function
-  //Scope = String(Pot.Pot_Distance(pot1, 87, 18, 50)) + " " + String(Setpoint); //Shows current position vs setpoint
+  Scope = String(Pot.Pot_Distance(pot1, 87, 18, 50)) + " " + String(Setpoint); //Shows current position vs setpoint
+  Serial.println(Scope);
   
   //SDCard.SDCard_Write(dataString);
   delay(50);        // delay in between reads for stability
