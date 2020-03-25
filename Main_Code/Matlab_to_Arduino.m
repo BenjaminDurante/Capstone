@@ -1,0 +1,17 @@
+clear 
+clc
+
+%Uploads Excel Sheet that has been preformatted
+T = readtable('Comp_Data_autocross.xlsx');
+%stackedplot(T);
+A = table2array(T);
+
+% Code to read and upload vehicle speed to the Arduino
+ar = serial('COM4','BaudRate',9600);
+fopen(ar);
+for (i=1:length(A))
+    A(i,2)
+    fprintf(ar,'%s',char(A(i,2)));
+    pause(20/1000);
+end
+fclose(ar);
