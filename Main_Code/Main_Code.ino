@@ -20,9 +20,9 @@ int LOADCELL_SCK_PIN = 2;
 String Scope = "";
 
 //Values for PID Testing below here
-int Setpoint = 40;
-double kp = 20;
-double ki = 0.1;
+double Setpoint = 25+20*sin(millis()/1000);
+double kp = 75;
+double ki = 15;
 double kd = 50;
 int pwm1;
 boolean dir1;
@@ -49,6 +49,7 @@ void loop() {
   pwm1 = PIDControl.Run_PWM(Pot.Pot_Distance(pot1, 87, 18, 50), Setpoint , kp , ki , kd ); //Sets PID and returns value of PWM
   dir1 = PIDControl.Run_Direction(); //Pulls out motor direction
   MotorControl.MotorMoveSmart(motordir1, motorpwm1, pwm1, dir1); //Moves motor based on PID
+  Setpoint = 25+20*sin(millis()/1000);
 
   //Scope to see current position vs setpoint to validate code. Comment out if using scope within PIDControl.Run_PWM function
   Scope = String(Pot.Pot_Distance(pot1, 87, 18, 50)) + " " + String(Setpoint); //Shows current position vs setpoint
