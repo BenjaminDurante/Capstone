@@ -30,14 +30,14 @@ int pwm1;
 boolean dir1;
 //Values added for PID testing above here
 
-//Variables for reading data from an SD Card below here
+//Variables for reading preset speed data below here
 String filename = "test.txt";
 double SpeedData[4]; //Used to store data
 int DataFields = 4; //Must be the same as the number proceeding
 unsigned long lastTime; //Used for timing
-double DriveSampleTime = 333; //Rate of data being fed in in ms
+double DriveSampleTime = 200; //Rate of data being fed in in ms
 int index = 0; //Used for reading the index of the SD Card data
-//Variables for reading data from an SD Card above here
+//Variables for reading present speed above here
 
 void setup() {
   // put your setup code here, to run once:
@@ -47,36 +47,6 @@ void setup() {
   Serial.begin(baud);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only also just good practice to do
-  }
-
-  //The data below here is extranousous data which can be commented out once everything is working
-  Serial.print("Initializing SD card...");
-  if (!SD.begin(10)) {
-    Serial.println("initialization failed!");
-    while (1);
-  }
-  Serial.println("initialization done.");
-  //The data above here is extranousous data which can be commented out once everything is working
-
-  pinMode(LED_BUILTIN, OUTPUT);
-  // open the file for reading:
-  myFile = SD.open(filename);
-  if (myFile) {
-    Serial.println(filename);
-    // read from the file until there's nothing else in it:
-    while (myFile.available()) {
-      SpeedData[index] = myFile.parseInt();
-      index++;
-      //Serial.write(myFile.read()); //Only needed to verify data
-    }
-    index = 0;
-    // close the file:
-    myFile.close();
-
-    //The else below is extranousous data which can be commented out once everything is working
-  } else {
-    // if the file didn't open, print an error:
-    Serial.println("error opening test.txt");
   }
 
   lastTime = millis() - DriveSampleTime; //Sets up this parameter so the next batch
