@@ -19,6 +19,7 @@ class PIDControl {
 
   /*
    * This function starts the clock
+   * This function should be placed at the end of the void setup
    */
     void Setup()
     {
