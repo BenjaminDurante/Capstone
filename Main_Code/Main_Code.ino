@@ -65,5 +65,5 @@ void loop() {
   Serial.println(Scope);
 
   //SDCard.SDCard_Write(dataString);
-  delay(25);        // delay in between reads for stability
+  delay(50);        // delay in between reads for stability
 }
