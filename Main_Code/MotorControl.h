@@ -39,5 +39,11 @@ class MotorControl
         analogWrite(pwm,pwm_value);//writing to motor controller speed of travel
     }
   }
+
+    void MotorMoveSmart(int dir, int pwm, int pwm_value, boolean dir_value)//Will move as instructed by the PID
+  {
+    digitalWrite(dir,dir_value);//writing to motor controller direction of travel
+    analogWrite(pwm,pwm_value);//writing to motor controller speed of travel
+  }
 };
 MotorControl MotorControl;
