@@ -1,11 +1,12 @@
+/*
+   SD Card Code
+*/
 #include <SD.h>
 #include <SPI.h>
-
 class SDCard {
   private:
 
   public:
-
     //Connects to the SD Card
     void SDCard_Setup() {
       if (!SD.begin(4)) {
@@ -14,7 +15,7 @@ class SDCard {
       }
     }
 
-//Writes data to the SD Card
+    //Writes data to the SD Card
     void SDCard_Write(String dataString) {
 
       // make a string for assembling the data to log:
